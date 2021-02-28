@@ -1,0 +1,6 @@
+
+c
+java:S1858-"A"getText" returns a string, there's no need to call "toString()".(˜èÊ’ıÿÿÿÿ8ˆŞ¿¥ş.
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¾òØ¥ş.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ğ·ˆÍ
