@@ -5,3 +5,21 @@ G
 src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
 Q
 !src/test/java/avic/FirstTest.java,5\1\517fe4174bad0f4d7619ed1b558c008b989c792c
+U
+%src/main/java/avicPages/BasePage.java,e\c\ec7302c760c74e7add832539ded7e26abf6538b3
+V
+&src/test/java/avic/SearchingTests.java,2\1\21d8228600005f3f37c7ec7cc871b6a6d54d46b8
+P
+ src/test/java/avic/BaseTest.java,6\0\60fc7db17370bdebd3af9a3a62928ccafc58c320
+^
+.src/main/java/avicPages/SearchResultsPage.java,3\5\357b43df4fdb5d3ebb3af8fcc54d865e01321820
+U
+%src/main/java/avicPages/HomePage.java,3\2\32ef219b55bcfd1b78a3c9cb1a21fc91c08c7a98
+S
+#src/main/java/avicPages/TVpage.java,7\e\7eeee605835353f7a4598d4d687dce0b95f94fab
+V
+&src/test/java/avic/AddToCartTests.java,b\9\b925cbcd7420744c92d5ed602bf999ad39358f57
+V
+&src/main/java/avicPages/IPadsPage.java,a\5\a5f3e880e98f633c15a06089fc8afe53525db95a
+^
+.src/main/java/avicPages/UniversalCommands.java,5\3\5361578f902f3d4bba5f05e79b88e5aa9486c409
