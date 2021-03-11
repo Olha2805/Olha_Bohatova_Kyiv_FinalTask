@@ -1,4 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ð·ˆÍ
-W
-java:S1858"A"getText" returns a string, there's no need to call "toString()".(Õÿç»

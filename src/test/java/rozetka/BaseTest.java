@@ -1,57 +1,48 @@
-package avic;
+package rozetka;
 
-import avicPages.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import rozetkaPages.HomePage;
+import utils.CapabilityFactory;
 
-import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class BaseTest {
 
-    private WebDriver driver;
-    private static final String AVIC_URL = "https://avic.ua/";
+    protected static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();// ThreadLocal позволяет нам хранить данные, которые будут доступны только конкретным потоком. Каждый поток будет иметь свой собственный экземпляр ThreadLocal
+    private CapabilityFactory capabilityFactory = new CapabilityFactory();
 
-
-    @BeforeTest
-    public void profileSetUp() {
-        chromedriver().setup();
-    }
+    private static final String ROZETKA_URL = "https://rozetka.com.ua/";
 
     @BeforeMethod
-    public void testsSetUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(AVIC_URL);
+    @Parameters(value = {"browser"})
+    public void setUp(String browser) throws MalformedURLException {
+        driver.set(new RemoteWebDriver(new URL("http://192.168.1.142:4444/wd/hub"),
+                capabilityFactory.getCapabilities(browser)));
+        getDriver().get(ROZETKA_URL);
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.close();
+        getDriver().close();
+    }
+
+    @AfterClass
+    void terminate() {
+        driver.remove();
     }
 
     public WebDriver getDriver() {
-        return driver;
+        return driver.get();
     }
 
     public HomePage getHomePage() {
         return new HomePage(getDriver());
     }
-
-    public SearchResultsPage getSearchResultsPage() {
-        return new SearchResultsPage(getDriver());
-    }
-
-    public TVpage getTVPageResultsPage(){ return new TVpage(getDriver());}
-
-    public IPadsPage getIPadsResultsPage(){return new IPadsPage(getDriver());}
-
-    public UniversalCommands getUniversalCommands(){return new UniversalCommands(getDriver());}
-
-    public FasteningsPage getFasteningsPage() {return new FasteningsPage(getDriver());}
-
-    public CheckOutPage getCheckOutPage() {return new CheckOutPage(getDriver());}
 
 }
