@@ -9,7 +9,7 @@ Feature: Search
       Given User opens '<homePage>' page
       And User checks search field visibility
       When User writes keyword '<keyword>' in search area
-      And User select '<categoriesName>' category
+      And User select CategoriesName category
       And User clicks search button
       Then User check that url contains '<categoriesName>'
 

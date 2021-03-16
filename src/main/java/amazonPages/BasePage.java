@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
 
     WebDriver driver;
-    WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -19,7 +18,8 @@ public class BasePage {
 
     public void waitForPageLoadComplete(long timeToWait) {
         new WebDriverWait(driver, timeToWait).until(
-                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+                webDriver -> ((JavascriptExecutor) webDriver)
+                        .executeScript("return document.readyState").equals("complete"));
     }
 
     public void waitVisibilityOfElement(long timeToWait, WebElement element) {

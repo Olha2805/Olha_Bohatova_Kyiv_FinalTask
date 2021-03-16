@@ -10,7 +10,6 @@ import io.cucumber.java.en.When;
 import manager.PageFactoryManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static org.junit.Assert.assertTrue;
@@ -18,10 +17,8 @@ import static org.junit.Assert.assertTrue;
 public class DefinitionSteps {
     private static final long DEFAULT_TIMEOUT = 500;
     private static final long TIMEOUT_FOR_FIRST_PAGE_LOAD = 1000;
-    private static final int NUMBER_FOR_PRODUCT = 1;
-    private static final int NUMBER_FOR_LANGUAGE = 3;
+    private static final String POST_CODE_OF_USA = "99501";
 
-    WebDriverWait wait;
     WebDriver driver;
     PageFactoryManager pageFactoryManager;
     HomePage homePage;
@@ -41,17 +38,17 @@ public class DefinitionSteps {
     }
 
 
-    @Given ("User opens {string} page")
-    public void openHomePage(final String url){
+    @Given("User opens {string} page")
+    public void openHomePage(final String url) {
         homePage = pageFactoryManager.getHomePage();
         homePage.openHomePage(url);
         homePage.waitForPageLoadComplete(TIMEOUT_FOR_FIRST_PAGE_LOAD);
-        homePage.selectUSARegion();
+        homePage.selectUSARegion(DEFAULT_TIMEOUT, POST_CODE_OF_USA);
 
     }
 
     @And("User checks search field visibility")
-    public void checksSearchFieldVisibility(){
+    public void checksSearchFieldVisibility() {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         homePage.isSearchFieldVisible();
     }
@@ -60,20 +57,19 @@ public class DefinitionSteps {
     public void userMakesSearchByKeywordKeyword(final String keyword) {
         homePage = pageFactoryManager.getHomePage();
         homePage.clickToSearchArea(keyword);
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);}
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT * 2);
+    }
 
-        @When("User writes keyword {string} in search area")
-        public void userWritesKeywordInSearchArea(final String keyword) {
-            homePage = pageFactoryManager.getHomePage();
-            homePage.clickToSearchArea(keyword);
-            homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);
+    @When("User writes keyword {string} in search area")
+    public void userWritesKeywordInSearchArea(final String keyword) {
+        homePage = pageFactoryManager.getHomePage();
+        homePage.writeToSearchArea(keyword);
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT * 2);
     }
 
     @When("User click to Menu button")
     public void userClickToMenuButton() {
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);
         homePage.clickMenuButton(DEFAULT_TIMEOUT);
-
     }
 
     @When("User click to language bar")
@@ -82,14 +78,13 @@ public class DefinitionSteps {
         homePage.clickLanguageBar(DEFAULT_TIMEOUT);
     }
 
-    @And ("User clicks search button")
-    public void clickSearchButton(){
+    @And("User clicks search button")
+    public void clickSearchButton() {
         homePage.clickSearchButton(DEFAULT_TIMEOUT);
-
     }
 
-    @And ("User click add to cart on product")
-    public void clickAddToCartOnProductForSearchingResult(){
+    @And("User click add to cart on product")
+    public void clickAddToCartOnProductForSearchingResult() {
         productPage = pageFactoryManager.getProductPage();
         productPage.clickAddToCartButton(DEFAULT_TIMEOUT);
     }
@@ -110,7 +105,7 @@ public class DefinitionSteps {
     @And("User click Amazon Music Unlimited button")
     public void userClickAmazonMusicUnlimitedButton() {
         homePage = pageFactoryManager.getHomePage();
-        homePage.clickAmazonMusicUnlimitedButton(DEFAULT_TIMEOUT*2);
+        homePage.clickAmazonMusicUnlimitedButton(DEFAULT_TIMEOUT * 2);
     }
 
     @And("User click Open Web Player button")
@@ -169,19 +164,39 @@ public class DefinitionSteps {
         languagePage.clickSaveSelectedLanguage(DEFAULT_TIMEOUT);
     }
 
-    @And("User select {string} category")
-    public void userSelectCategoriesNameCategory(final String nameOfCategory) {
+    @And("User select CategoriesName category")
+    public void userSelectCategoriesNameCategory() {
         homePage = pageFactoryManager.getHomePage();
         homePage.clickBabyCategory(DEFAULT_TIMEOUT);
     }
 
     @And("User click Home button")
-    public void userClickHomeButton(){
+    public void userClickHomeButton() {
         homePage.clickHomeButton();
     }
 
-    @Then ("User checks that amount of products in cart are {string}")
-    public void checksThatAmountOfProductsInCartIsCorrect(final String amountOfProduct){
+    @And("User select another country")
+    public void userSelectAnotherCountry() {
+        homePage.clickCountryButton();
+        homePage.clickSelectRegionButton();
+        homePage.clickAustraliaInRegion();
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+    }
+
+    @And("User click buy now button")
+    public void userClickBuyNowButton() {
+        productPage = pageFactoryManager.getProductPage();
+        productPage.clickBuyNowButton();
+    }
+
+    @And("User can click {string} button")
+    public void userClickGoToWebsiteButton(final String Name_of_button) {
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        assertTrue(homePage.canClickGoToWebsiteButton(Name_of_button));
+    }
+
+    @Then("User checks that amount of products in cart are {string}")
+    public void checksThatAmountOfProductsInCartIsCorrect(final String amountOfProduct) {
         cartPage = pageFactoryManager.getCartPage();
         cartPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         assertTrue(cartPage.isAmountOfProductsInCartIsCorrect(amountOfProduct, DEFAULT_TIMEOUT));
@@ -190,7 +205,6 @@ public class DefinitionSteps {
     @Then("User check that at least one element on page contains search word {string}")
     public void userCheckThatOneElementOnePageContainsSearchWordKeyword(final String searchWord) {
         searchPage = pageFactoryManager.getSearchPage();
-        cartPage = pageFactoryManager.getCartPage();
         assertTrue(searchPage.isOneElementContainsWord(searchWord));
     }
 
@@ -223,39 +237,20 @@ public class DefinitionSteps {
         assertTrue(cartPage.getNameOfCart(DEFAULT_TIMEOUT).contains(expectedNameOfCart));
     }
 
-    @After
-    public void tearDown() {
-        driver.close();
-    }
-
-    @And("User click byu now button")
-    public void userClickByuNowButton() {
-        productPage = pageFactoryManager.getProductPage();
-        productPage.clickByuNowButton();
-    }
-
     @Then("User checks that see Sign-in text")
     public void userChecksThatSeeSignInText() {
         cartPage = pageFactoryManager.getCartPage();
         assertTrue(cartPage.isSignTextTextVisible(DEFAULT_TIMEOUT));
     }
 
-    @And("User select another country")
-    public void userSelectAnotherCountry() {
-        homePage.clickCountryButton();
-        homePage.clickSelectRegionButton();
-        homePage.clickAustraliaInRegion();
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
-    }
-
-    @And("User can click {string} button")
-    public void userClickGoToWebsiteButton(final String Name_of_button) {
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
-        assertTrue(homePage.canClickGoToWebsiteButton(Name_of_button));
-    }
-
     @Then("User checks new URL contains {string}")
     public void userChecksNewURLContainsDomain(final String domainName) {
         assertTrue(driver.getCurrentUrl().contains(domainName));
+    }
+
+
+    @After
+    public void tearDown() {
+        driver.close();
     }
 }

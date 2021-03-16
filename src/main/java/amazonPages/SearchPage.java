@@ -4,15 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
 
-public class SearchPage extends BasePage{
+
+public class SearchPage extends BasePage {
     public SearchPage(WebDriver driver) {
         super(driver);
     }
-
-    @FindBy(xpath = "//a[@class='a-link-normal a-text-normal']")
-    private List<WebElement> listOfProductsOnPage;
 
     @FindBy(xpath = "//a[@class='a-link-normal a-text-normal']")
     private WebElement oneProductsOnPage;
@@ -42,13 +39,8 @@ public class SearchPage extends BasePage{
         return answerToIncorrectSearchWord.getText();
     }
 
-    public List<WebElement> listOfProductsOnPage(){return listOfProductsOnPage;}
-
-    public boolean isOneElementContainsWord(String word){
-        waitVisibilityOfElement(500,oneProductsOnPage);
-            if(oneProductsOnPage.getText().contains(word))
-                return true;
-            else
-                return false;
+    public boolean isOneElementContainsWord(String word) {
+        waitVisibilityOfElement(500, oneProductsOnPage);
+        return oneProductsOnPage.getText().contains(word);
     }
 }

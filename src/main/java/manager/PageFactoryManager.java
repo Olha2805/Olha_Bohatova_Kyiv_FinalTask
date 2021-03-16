@@ -10,18 +10,28 @@ public class PageFactoryManager {
         this.driver = driver;
     }
 
-    public CartPage getCartPage(){return new CartPage(driver);}
+    public CartPage getCartPage() {
+        return new CartPage(driver);
+    }
 
     public HomePage getHomePage() {
         return new HomePage(driver);
     }
 
-    public ProductPage getProductPage(){return new ProductPage(driver);}
+    public ProductPage getProductPage() {
+        return new ProductPage(driver);
+    }
 
-    public SearchPage getSearchPage(){return new SearchPage(driver);}
+    public SearchPage getSearchPage() {
+        return new SearchPage(driver);
+    }
 
-    public AmazonMusicUnlimitedPage getAmazonMusicUnlimitedPage(){return new AmazonMusicUnlimitedPage(driver);}
+    public AmazonMusicUnlimitedPage getAmazonMusicUnlimitedPage() {
+        return new AmazonMusicUnlimitedPage(driver);
+    }
 
-    public LanguagePage getLanguagePage(){return new LanguagePage(driver);}
+    public LanguagePage getLanguagePage() {
+        return new LanguagePage(driver);
+    }
 
 }

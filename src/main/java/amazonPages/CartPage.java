@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CartPage extends BasePage{
+public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         super(driver);
     }
@@ -18,21 +18,24 @@ public class CartPage extends BasePage{
     @FindBy(xpath = "//h1[@class='a-spacing-small']")
     private WebElement signInText;
 
-public String actualAmount( long time){
-    waitVisibilityOfElement(time, cartCount);
-    return cartCount.getText();
-}
+    public String actualAmount(long time) {
+        waitVisibilityOfElement(time, cartCount);
+        return cartCount.getText();
+    }
+
     public boolean isAmountOfProductsInCartIsCorrect(String amountOfProduct, long time) {
         waitVisibilityOfElement(time, cartCount);
         return cartCount.getText().contains(amountOfProduct);
     }
 
-    public String getNameOfCart(long time){
-    waitVisibilityOfElement(time, nameOfCart);
-    return nameOfCart.getText();}
+    public String getNameOfCart(long time) {
+        waitVisibilityOfElement(time, nameOfCart);
+        return nameOfCart.getText();
+    }
 
     public boolean isSignTextTextVisible(long time) {
-    waitVisibilityOfElement(time, signInText);
-    return signInText.isDisplayed();}
+        waitVisibilityOfElement(time, signInText);
+        return signInText.isDisplayed();
+    }
 
 }

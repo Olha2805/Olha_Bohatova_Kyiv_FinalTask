@@ -4,7 +4,6 @@ package amazonPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.Keys.ENTER;
 
@@ -13,7 +12,6 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
-    WebDriverWait wait;
 
     @FindBy(xpath = "//a[@id = 'nav-logo-sprites']")
     private WebElement homeButton;
@@ -46,10 +44,10 @@ public class HomePage extends BasePage {
     private WebElement unlimitedAmazonMusicButton;
 
     @FindBy(xpath = "//div[contains(text(), 'Best') or contains(text(), 'Arts & Crafts') or contains(text(), 'Clothing)]")
-    private WebElement kindleButton;
+    private WebElement menuElementButton;
 
     @FindBy(xpath = "//a[contains(text(), 'Appliances') or contains(text(), 'Crafting') or contains(text(), 'Amazon Fashion')]")
-    private WebElement kindleSubmenuButton;
+    private WebElement submenuButton;
 
     @FindBy(xpath = "//div[contains(text(), 'Arts & Crafts') or contains(text(), 'Best')]")
     private WebElement artsAndCraftsButton;
@@ -87,36 +85,42 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@class='a-row a-spacing-small a-size-base a-color-secondary']//span[@class='a-color-base']")
     private WebElement amazonCertifiedArea;
 
-    public void selectUSARegion(){
+    public void selectUSARegion(long time, String postCode) {
         selectCountryButton.click();
-        waitVisibilityOfElement(1000, selectPostCodeArea);
-        selectPostCodeArea.sendKeys("99501");
+        waitVisibilityOfElement(time * 2, selectPostCodeArea);
+        selectPostCodeArea.sendKeys(postCode);
         applyButton.click();
         doneButton.click();
-        waitVisibilityOfElement(1000,selectCountryButton);
+        waitVisibilityOfElement(time * 2, selectCountryButton);
     }
 
-    public void clickHomeButton(){
+    public void clickHomeButton() {
         homeButton.click();
     }
 
-    public void openHomePage(String url) {driver.get(url);}
+    public void openHomePage(String url) {
+        driver.get(url);
+    }
 
-    public boolean isSearchFieldVisible() {return searchArea.isDisplayed();}
+    public boolean isSearchFieldVisible() {
+        return searchArea.isDisplayed();
+    }
 
     public void clickToSearchArea(final String keyword) {
         searchArea.click();
-        searchArea.sendKeys(keyword, ENTER);}
+        searchArea.sendKeys(keyword, ENTER);
+    }
 
     public void writeToSearchArea(final String keyword) {
         searchArea.click();
-        searchArea.sendKeys(keyword);}
+        searchArea.sendKeys(keyword);
+    }
 
     public void clickSearchButton(long time) {
         waitVisibilityOfElement(time, searchButton);
         searchButton.click();
         waitVisibilityOfElement(time, homeButton);
-            }
+    }
 
     public void clickMenuButton(long time) {
         waitVisibilityOfElement(time, menuButton);
@@ -125,58 +129,78 @@ public class HomePage extends BasePage {
 
     public void clickAmazonMusicButton(long time) {
         waitVisibilityOfElement(time, amazonMusicButton);
-        amazonMusicButton.click();}
+        amazonMusicButton.click();
+    }
 
     public void clickAmazonMusicUnlimitedButton(long time) {
         waitVisibilityOfElement(time, unlimitedAmazonMusicButton);
-        unlimitedAmazonMusicButton.click();}
+        unlimitedAmazonMusicButton.click();
+    }
 
     public void clickKindleButton(long time) {
-        waitVisibilityOfElement(time, kindleButton);
-        kindleButton.click();}
+        waitVisibilityOfElement(time, menuElementButton);
+        menuElementButton.click();
+    }
 
     public void clickKindleSubmenuButton(long time) {
-        waitVisibilityOfElement(time, kindleSubmenuButton);
-        kindleSubmenuButton.click();}
+        waitVisibilityOfElement(time, submenuButton);
+        submenuButton.click();
+    }
 
 
     public void clickArtsAndCraftsButton(long time) {
         waitVisibilityOfElement(time, artsAndCraftsButton);
-        artsAndCraftsButton.click();}
+        artsAndCraftsButton.click();
+    }
 
     public void clickCraftingButton(long time) {
         waitVisibilityOfElement(time, craftingButton);
-        craftingButton.click();}
+        craftingButton.click();
+    }
 
     public void clickElectronicsButton(long time) {
         waitVisibilityOfElement(time, electronicsButton);
-        electronicsButton.click();}
+        electronicsButton.click();
+    }
 
     public void clickCameraAndPhotoButton(long time) {
         waitVisibilityOfElement(time, cameraAndPhotoButton);
-        cameraAndPhotoButton.click();}
+        cameraAndPhotoButton.click();
+    }
 
     public void clickCategoriesButtonInSearchArea(long time) {
         waitVisibilityOfElement(time, categoriesButtonInSearchArea);
-        categoriesButtonInSearchArea.click();}
+        categoriesButtonInSearchArea.click();
+    }
 
     public void clickBabyCategory(long time) {
         waitVisibilityOfElement(time, selectBabyCategory);
-        selectBabyCategory.click();}
+        selectBabyCategory.click();
+    }
 
     public void clickLanguageBar(long time) {
         waitVisibilityOfElement(time, languageBar);
-        languageBar.click();}
+        languageBar.click();
+    }
 
-        public void clickCountryButton(){countryButton.click();}
+    public void clickCountryButton() {
+        countryButton.click();
+    }
 
-        public void clickSelectRegionButton(){selectRegionButton.click();}
+    public void clickSelectRegionButton() {
+        selectRegionButton.click();
+    }
 
-        public void clickAustraliaInRegion(){selectAustraliaInTheList.click();}
+    public void clickAustraliaInRegion() {
+        selectAustraliaInTheList.click();
+    }
 
-        public boolean canClickGoToWebsiteButton(final String Name_of_button){
-            return goToWebsiteButton.getText().contains(Name_of_button);}
+    public boolean canClickGoToWebsiteButton(final String Name_of_button) {
+        return goToWebsiteButton.getText().contains(Name_of_button);
+    }
 
-        public String getTextFromAmazonCertifiedArea(){return amazonCertifiedArea.getText();}
+    public String getTextFromAmazonCertifiedArea() {
+        return amazonCertifiedArea.getText();
+    }
 
 }

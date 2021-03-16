@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/languageAndCountry.feature",
+        features = "src/test/resources/cart.feature",
         glue = "stepdefinitions"
 )
 public class RunnerTest { }

@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
-public class LanguagePage extends BasePage{
+public class LanguagePage extends BasePage {
     public LanguagePage(WebDriver driver) {
         super(driver);
     }
@@ -19,9 +17,11 @@ public class LanguagePage extends BasePage{
 
     public void selectAnotherLanguage(long time) {
         waitVisibilityOfElement(time, selectSpanishLangauge);
-        selectSpanishLangauge.click();}
+        selectSpanishLangauge.click();
+    }
 
     public void clickSaveSelectedLanguage(long time) {
         waitVisibilityOfElement(time, saveLanguageButton);
-        saveLanguageButton.click();}
+        saveLanguageButton.click();
+    }
 }
