@@ -84,6 +84,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//span[contains(text(), 'Go to website')]")
     private WebElement goToWebsiteButton;
 
+    @FindBy(xpath = "//div[@class='a-row a-spacing-small a-size-base a-color-secondary']//span[@class='a-color-base']")
+    private WebElement amazonCertifiedArea;
+
     public void selectUSARegion(){
         selectCountryButton.click();
         waitVisibilityOfElement(1000, selectPostCodeArea);
@@ -105,7 +108,15 @@ public class HomePage extends BasePage {
         searchArea.click();
         searchArea.sendKeys(keyword, ENTER);}
 
-    public void clickSearchButton() {searchButton.click();}
+    public void writeToSearchArea(final String keyword) {
+        searchArea.click();
+        searchArea.sendKeys(keyword);}
+
+    public void clickSearchButton(long time) {
+        waitVisibilityOfElement(time, searchButton);
+        searchButton.click();
+        waitVisibilityOfElement(time, homeButton);
+            }
 
     public void clickMenuButton(long time) {
         waitVisibilityOfElement(time, menuButton);
@@ -163,6 +174,9 @@ public class HomePage extends BasePage {
 
         public void clickAustraliaInRegion(){selectAustraliaInTheList.click();}
 
-        public void clickGoToWebsiteButton(){goToWebsiteButton.click();}
+        public boolean canClickGoToWebsiteButton(final String Name_of_button){
+            return goToWebsiteButton.getText().contains(Name_of_button);}
+
+        public String getTextFromAmazonCertifiedArea(){return amazonCertifiedArea.getText();}
 
 }

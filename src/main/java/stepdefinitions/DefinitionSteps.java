@@ -60,7 +60,13 @@ public class DefinitionSteps {
     public void userMakesSearchByKeywordKeyword(final String keyword) {
         homePage = pageFactoryManager.getHomePage();
         homePage.clickToSearchArea(keyword);
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);}
+
+        @When("User writes keyword {string} in search area")
+        public void userWritesKeywordInSearchArea(final String keyword) {
+            homePage = pageFactoryManager.getHomePage();
+            homePage.clickToSearchArea(keyword);
+            homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);
     }
 
     @When("User click to Menu button")
@@ -78,8 +84,8 @@ public class DefinitionSteps {
 
     @And ("User clicks search button")
     public void clickSearchButton(){
-        homePage.clickSearchButton();
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);
+        homePage.clickSearchButton(DEFAULT_TIMEOUT);
+
     }
 
     @And ("User click add to cart on product")
@@ -188,9 +194,9 @@ public class DefinitionSteps {
         assertTrue(searchPage.isOneElementContainsWord(searchWord));
     }
 
-    @Then("User checks that see {string} in the URL")
+    @Then("User checks that see word {string} on product area")
     public void userChecksThatSeeKeywordInURL(final String word) {
-        assertTrue(driver.getCurrentUrl().contains(word));
+        assertTrue(homePage.getTextFromAmazonCertifiedArea().contains(word));
     }
 
     @Then("User check that see {string} period")
@@ -202,8 +208,7 @@ public class DefinitionSteps {
     @Then("User check that url contains {string}")
     public void userCheckThatUrlContainsString(final String wordForCheck) {
         amazonMusicUnlimitedPage = pageFactoryManager.getAmazonMusicUnlimitedPage();
-        amazonMusicUnlimitedPage.waitForPageLoadComplete(DEFAULT_TIMEOUT*2);
-        assertTrue("actual URL = " + driver.getCurrentUrl(), driver.getCurrentUrl().contains(wordForCheck));
+        assertTrue(driver.getCurrentUrl().contains(wordForCheck));
     }
 
     @Then("User checks answer to invalid search word {string}")
@@ -243,11 +248,10 @@ public class DefinitionSteps {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
     }
 
-    @And("User click Go to website button")
-    public void userClickGoToWebsiteButton() {
+    @And("User can click {string} button")
+    public void userClickGoToWebsiteButton(final String Name_of_button) {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
-        homePage.clickGoToWebsiteButton();
-        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        assertTrue(homePage.canClickGoToWebsiteButton(Name_of_button));
     }
 
     @Then("User checks new URL contains {string}")

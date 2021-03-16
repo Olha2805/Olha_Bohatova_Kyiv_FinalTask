@@ -23,6 +23,9 @@ public class SearchPage extends BasePage{
     @FindBy(xpath = "//span[contains(text(), 'No results for')]")
     private WebElement answerToIncorrectSearchWord;
 
+    @FindBy(xpath = "//div[@class='a-row a-spacing-small a-size-base a-color-secondary']//span[@class='a-color-base']")
+    private WebElement amazonCertifiedArea;
+
     public void clickToProduct(long time) {
         waitVisibilityOfElement(time, oneProductsOnPage);
         oneProductsOnPage.click();
@@ -31,7 +34,7 @@ public class SearchPage extends BasePage{
     public void clickWorksWithAlexaCheckBox(long time) {
         waitVisibilityOfElement(time, worksWithAlexaCheckBox);
         worksWithAlexaCheckBox.click();
-        waitForPageLoadComplete(time);
+        waitVisibilityOfElement(time, amazonCertifiedArea);
     }
 
     public String getAnswerToIncorrectSearchWord(long time) {

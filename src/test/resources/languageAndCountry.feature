@@ -3,17 +3,15 @@ Feature: Language and country
   I want to test cart functional in main site
   So that I can be sure that site works correctly
 
-
-  Scenario Outline: Check that changing country website to Canada will change website to another domain
+  Scenario Outline: Check that we can change country website to Australia
     Given User opens '<homePage>' page
     When User click to Menu button
     And User select another country
-    And User click Go to website button
-    Then User checks new URL contains '<domain>'
+    Then User can click '<name_of_button>' button
 
     Examples:
-      | homePage                    | domain  |
-      | https://www.amazon.com/     | .com.au |
+      | homePage                 |name_of_button |
+      | https://www.amazon.com/  |Go to website  |
 
   Scenario Outline: Check that cart changing name after change language to Spanish
     Given User opens '<homePage>' page
