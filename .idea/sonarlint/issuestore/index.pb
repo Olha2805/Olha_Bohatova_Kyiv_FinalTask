@@ -31,3 +31,7 @@ g
 +src/main/java/amazonPages/LanguagePage.java,d\f\df21382a091682b1dbee881d908643762dc27979
 N
 Test Results - RunnerTest.html,8\d\8d23ef7bac37de935e59f1a61a7d7179b3c7fab5
+J
+rerun/failed_scenarios.txt,a\4\a47da733b86bd02d43d6b1ee65ee7917be8c3174
+Q
+!src/test/resources/search.feature,2\9\2918aa65034875127bfbefa2ae15d6ecd3988719

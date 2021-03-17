@@ -24,7 +24,7 @@ public class CartPage extends BasePage {
     }
 
     public boolean isAmountOfProductsInCartIsCorrect(String amountOfProduct, long time) {
-        waitVisibilityOfElement(time, cartCount);
+        waitVisibilityOfElement(time, nameOfCart);
         return cartCount.getText().contains(amountOfProduct);
     }
 

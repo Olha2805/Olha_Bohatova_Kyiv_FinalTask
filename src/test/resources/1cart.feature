@@ -7,7 +7,7 @@ Feature: Cart
     Given User opens '<homePage>' page
     When User click to Menu button
     And User click Electronics button
-    And User click Camera and Photo button
+    And User click Accessories and Supplies button
     And User click add to cart on product
     And User click Home button
     And User makes search by keyword '<keyword>'
@@ -16,8 +16,8 @@ Feature: Cart
     Then User checks that amount of products in cart are '<amountOfProduct>'
 
     Examples:
-      | homePage                    | keyword | amountOfProduct |
-      | https://www.amazon.com/     | digital | 2               |
+      | homePage                    | keyword     | amountOfProduct |
+      | https://www.amazon.com/     | sensory toy | 2               |
 
   Scenario Outline: Check add to cart using search area
     Given User opens '<homePage>' page

@@ -140,10 +140,10 @@ public class DefinitionSteps {
         homePage.clickElectronicsButton(DEFAULT_TIMEOUT);
     }
 
-    @And("User click Camera and Photo button")
-    public void userClickCameraAndPhotoButton() {
+    @And("User click Accessories and Supplies button")
+    public void userClickAccessoriesAndSuppliesButton() {
         homePage = pageFactoryManager.getHomePage();
-        homePage.clickCameraAndPhotoButton(DEFAULT_TIMEOUT);
+        homePage.clickAccessoriesAndSuppliesButton(DEFAULT_TIMEOUT);
     }
 
     @And("User click navigation icon")
@@ -199,7 +199,7 @@ public class DefinitionSteps {
     public void checksThatAmountOfProductsInCartIsCorrect(final String amountOfProduct) {
         cartPage = pageFactoryManager.getCartPage();
         cartPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
-        assertTrue(cartPage.isAmountOfProductsInCartIsCorrect(amountOfProduct, DEFAULT_TIMEOUT));
+        assertTrue(cartPage.actualAmount(DEFAULT_TIMEOUT), cartPage.isAmountOfProductsInCartIsCorrect(amountOfProduct, DEFAULT_TIMEOUT));
     }
 
     @Then("User check that at least one element on page contains search word {string}")

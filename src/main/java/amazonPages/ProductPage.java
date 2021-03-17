@@ -21,6 +21,9 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//a[@id='nav-hamburger-menu']")
     private WebElement menuButton;
 
+    @FindBy(xpath = "//span[contains(text(), 'No thanks')]")
+    private WebElement noThanksButton;
+
     public void clickAddToCartButton(long time) {
         waitVisibilityOfElement(time, openProductPage);
         if (openProductPage.isDisplayed()) {

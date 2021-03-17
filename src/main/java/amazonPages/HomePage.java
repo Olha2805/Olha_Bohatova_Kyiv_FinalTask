@@ -3,6 +3,7 @@ package amazonPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static org.openqa.selenium.Keys.ENTER;
@@ -12,6 +13,7 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
     }
+    Actions action = new Actions(driver);
 
     @FindBy(xpath = "//a[@id = 'nav-logo-sprites']")
     private WebElement homeButton;
@@ -58,8 +60,8 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[@data-menu-id = '5']")
     private WebElement electronicsButton;
 
-    @FindBy(xpath = "//a[contains(text(), ' Photo')]")
-    private WebElement cameraAndPhotoButton;
+    @FindBy(xpath = "//a[contains(text(), 'Accessories & Supplies')]")
+    private WebElement accessoriesAndSuppliesButton;
 
     @FindBy(xpath = "//select[@aria-describedby='searchDropdownDescription']")
     private WebElement categoriesButtonInSearchArea;
@@ -163,9 +165,9 @@ public class HomePage extends BasePage {
         electronicsButton.click();
     }
 
-    public void clickCameraAndPhotoButton(long time) {
-        waitVisibilityOfElement(time, cameraAndPhotoButton);
-        cameraAndPhotoButton.click();
+    public void clickAccessoriesAndSuppliesButton(long time) {
+        waitVisibilityOfElement(time, accessoriesAndSuppliesButton);
+        accessoriesAndSuppliesButton.click();
     }
 
     public void clickCategoriesButtonInSearchArea(long time) {
@@ -180,6 +182,7 @@ public class HomePage extends BasePage {
 
     public void clickLanguageBar(long time) {
         waitVisibilityOfElement(time, languageBar);
+        action.moveToElement(languageBar).build().perform();
         languageBar.click();
     }
 
