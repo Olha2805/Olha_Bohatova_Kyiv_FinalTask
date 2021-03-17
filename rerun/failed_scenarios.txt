@@ -1,3 +1,0 @@
-file:src/test/resources/cart.feature:20:32:48
-file:src/test/resources/search.feature:15:54
-file:src/test/resources/amazonMusic.feature:18
